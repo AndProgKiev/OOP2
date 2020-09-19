@@ -1,6 +1,5 @@
 public class Table {
     private final Shape[] table=new Shape[4];
-    private int count=0;
     public Table() {
     }
 
@@ -9,8 +8,18 @@ public class Table {
     }
 
     public void addShape(Shape shape){
-        table[count]=shape;
-        count++;
+        int count=0;
+        for (int i = 0; i <table.length ; i++) {
+            if(table[i]==null){
+                table[i]=shape;
+                break;
+            }else count++;
+        }
+        if(count==4){
+            System.out.println("Нет свободного места для добавления фигуры");
+        }
+    //    table[count]=shape;
+      //  count++;
     }
 
     public void removeShape(int i){
@@ -19,7 +28,7 @@ public class Table {
 
     public double getAllAre(){
         double a=0;
-        for (int i = 0; i <count ; i++) {
+        for (int i = 0; i <table.length ; i++) {
             if (table[i]!=null){
                 a+=table[i].getArea();
             }
@@ -31,7 +40,7 @@ public class Table {
     @Override
     public String toString() {
         String s=" На доске лежит: ";
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < table.length; i++) {
             if(table[i]!=null){
              s+= table[i].toString();
             }
